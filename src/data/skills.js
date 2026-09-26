@@ -1,0 +1,33 @@
+export const skills = {
+  Languages: [
+    "Python",
+    "Java",
+    "TypeScript",
+    "JavaScript",
+    "C",
+    "SQL",
+    "HTML",
+    "CSS",
+  ],
+  "Frameworks/Libraries": [
+    "React",
+    "React Native",
+    "Spring Boot",
+    "FastAPI",
+    "Node.js",
+    "Express.js",
+    "Tailwind CSS",
+  ],
+  "Tools/Database": [
+    "Git",
+    "Github",
+    "GitLab",
+    "Jira",
+    "PostgreSQL",
+    "Supabase",
+    "Docker",
+    "Jest",
+    "LabVIEW",
+    "Figma",
+  ],
+};
