@@ -14,7 +14,7 @@ export default function Projects() {
           eyebrow="Projects"
           title="Things I’m building and exploring."
         />
-        <div className="project-list mt-14">
+        <div className="project-list mt-20">
           {projects.map((project, index) => {
             const isReversed = index % 2 !== 0;
             const direction = isReversed ? -20 : 20;
