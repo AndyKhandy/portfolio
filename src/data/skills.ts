@@ -1,4 +1,10 @@
-export const skills = {
+export interface SkillGroup {
+  Languages: string[],
+  "Frameworks/Libraries": string[],
+  "Tools/Database": string[]
+}
+
+export const skills: SkillGroup = {
   Languages: [
     "Python",
     "Java",
@@ -31,3 +37,4 @@ export const skills = {
     "Figma",
   ],
 };
+

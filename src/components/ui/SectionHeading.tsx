@@ -1,4 +1,14 @@
-export default function SectionHeading({ eyebrow, title, children }) {
+interface SectionHeadingProps {
+  eyebrow: string;
+  title: string;
+  children?: React.ReactNode;
+}
+
+export default function SectionHeading({
+  eyebrow,
+  title,
+  children,
+}: SectionHeadingProps) {
   return (
     <div className="max-w-2xl">
       <p className="eyebrow">{eyebrow}</p>

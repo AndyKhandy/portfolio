@@ -1,5 +1,21 @@
+export interface Project {
+  slug: string
+  title: string
+  shortDescription: string | null
+  longDescription: string | null
+  image: string | null
+  screenshots: string[]
+  techStack: string[]
+  githubUrl: string | null
+  liveDemoUrl: string | null
+  role: string | null
+  challenges: string | null
+  lessons: string | null
+  result: string | null
+}
+
 // Add local public paths here, e.g. screenshots: ['/projects/bughouse/home.png', '/projects/bughouse/board.png'].
-export const projects = [
+export const projects: Project[] = [
   {
     slug: "bughouse",
     title: "bugHouse",

@@ -1,6 +1,12 @@
-import { Code2, Mail, Share2 } from "lucide-react";
+import { Code2, Mail, Share2, LucideIcon } from "lucide-react";
 
-const items = [
+export interface Links {
+  label: string;
+  href: string;
+  Icon: LucideIcon;
+}
+
+const items: Links[] = [
   { label: "GitHub", href: "https://github.com/AndyKhandy", Icon: Code2 },
   {
     label: "LinkedIn",
@@ -9,6 +15,7 @@ const items = [
   },
   { label: "Email", href: "mailto:andytajuly30@gmail.com", Icon: Mail },
 ];
+
 export default function SocialLinks({ labels = false }) {
   return (
     <div className="flex flex-wrap gap-3">

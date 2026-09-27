@@ -8,7 +8,7 @@ const links = ["About", "Experience", "Projects", "Skills", "Contact"];
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const href = (name) =>
+  const href = (name: string) =>
     pathname === "/" ? `#${name.toLowerCase()}` : `/#${name.toLowerCase()}`;
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[color:var(--surface)/.86] backdrop-blur-xl">

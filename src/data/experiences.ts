@@ -1,4 +1,11 @@
-export const experiences = [
+export interface Experience{
+  slug: string,
+  organization: string,
+  role: string,
+  description: string | null
+}
+
+export const experiences: Experience[] = [
   {
     slug: "lockheed-martin-test-engineer-intern",
     organization: "Lockheed Martin",
@@ -8,7 +15,7 @@ export const experiences = [
   {
     slug: "scope-lab-reu",
     organization: "Computing Research Association",
-    role: "Undergraduate Research — Block-Based Editors",
+    role: "Undergraduate Researcher",
     description: null,
   },
   {

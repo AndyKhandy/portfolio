@@ -1,8 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { experiences } from "../../data/experiences";
 import SectionHeading from "../ui/SectionHeading";
 export default function ExperienceTimeline() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="experience" className="section section-tint">
       <div className="page-shell">
@@ -12,9 +15,15 @@ export default function ExperienceTimeline() {
         />
         <div className="timeline mt-12">
           {experiences.map((item, index) => (
-            <article
+            <motion.article
               className={`timeline-item ${index % 2 ? "timeline-right" : ""}`}
               key={item.slug}
+              initial={
+                reduceMotion ? {} : { opacity: 0, x: index % 2 ? 20 : -20 }
+              }
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.60 }}
+              transition={{ duration: 0.45 }}
             >
               <span className="timeline-dot" />
               <div className="card">
@@ -34,7 +43,7 @@ export default function ExperienceTimeline() {
                   More context <ArrowUpRight size={15} />
                 </Link>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>

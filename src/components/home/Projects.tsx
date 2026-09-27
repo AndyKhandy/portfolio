@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Code2, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
-import { projects } from "../../data/projects";
+import { Project, projects } from "../../data/projects";
 import SectionHeading from "../ui/SectionHeading";
 
 export default function Projects() {
@@ -28,7 +28,7 @@ export default function Projects() {
                   className="project-visual"
                   initial={reduceMotion ? {} : { opacity: 0, x: direction }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
+                  viewport={{ once: true, amount: 0.45 }}
                   transition={{ duration: 0.35 }}
                 >
                   <ProjectMedia project={project} />
@@ -37,8 +37,8 @@ export default function Projects() {
                   className="project-copy"
                   initial={reduceMotion ? {} : { opacity: 0, x: -direction }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.35, delay: 0.06 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ duration: 0.35, delay: 0.10 }}
                 >
                   <p className="eyebrow">Project 0{index + 1}</p>
                   <h3 className="mt-3 text-3xl font-bold tracking-tight">
@@ -106,7 +106,11 @@ export default function Projects() {
   );
 }
 
-function ProjectMedia({ project }) {
+interface ProjectMediaProps{
+  project: Project
+}
+
+function ProjectMedia({ project }: ProjectMediaProps) {
   const screenshots = project.screenshots.length
     ? project.screenshots
     : project.image
