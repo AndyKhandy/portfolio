@@ -39,7 +39,7 @@ export const projects: Project[] = [
     image: null,
     screenshots: ["/AlloyBlocks/editor.png","/AlloyBlocks/code.png","/AlloyBlocks/graph.png"],
     techStack: ["React", "TypeScript", "Spring Boot", "CSS", "LocalStorage"],
-    githubUrl: null,
+    githubUrl: "https://github.com/AndyKhandy/UR2PhD-Alloy",
     liveDemoUrl: null,
     role: null,
     challenges: null,
