@@ -1,5 +1,7 @@
-import { skills } from "../../data/skills";
+import { Code2 } from "lucide-react";
+import { skillIcons, skills } from "../../data/skills";
 import SectionHeading from "../ui/SectionHeading";
+
 export default function Skills() {
   return (
     <section id="skills" className="section section-tint">
@@ -9,19 +11,23 @@ export default function Skills() {
           {Object.entries(skills).map(([group, items]) => (
             <section className="card" key={group}>
               <h3 className="font-bold">{group}</h3>
-              {items.length ? (
-                <div className="mt-4 flex flex-wrap flex-col gap-2">
-                  {items.map((item: string) => (
-                    <span className="tech-badge" key={item}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <p className="mt-3 text-sm text-[var(--muted)]">
-                  Details coming soon.
-                </p>
-              )}
+              <div className="skill-container mt-6 gap-2">
+                {items.map((item) => (
+                  <span className="tech-badge flex flex-col items-center gap-2" key={item}>
+                    {skillIcons[item] ? (
+                      <img
+                        className="size-9"
+                        src={skillIcons[item]}
+                        alt=""
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <Code2 className="size-4" aria-hidden="true" />
+                    )}
+                    {item}
+                  </span>
+                ))}
+              </div>
             </section>
           ))}
         </div>

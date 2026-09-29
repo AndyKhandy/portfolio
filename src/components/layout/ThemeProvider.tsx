@@ -32,7 +32,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     localStorage.setItem(key, theme);
   }, [theme]);
   return (
-    <ThemeContext.Provider
+    <ThemeContext
       value={{
         theme,
         toggleTheme: () =>
@@ -40,7 +40,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       }}
     >
       {children}
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 
