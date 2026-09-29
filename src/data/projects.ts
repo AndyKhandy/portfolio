@@ -30,7 +30,7 @@ export const projects: Project[] = [
       "/bugHouse/team.png",
       "/bugHouse/adminView.png",
     ],
-    techStack: ["React", "TypeScript", "FastAPI", "Supabase", "Tailwind CSS"],
+    techStack: ["React", "TypeScript", "FastAPI", "Supabase", "Tailwind CSS", "MagSwipe ID Scanner"],
     githubUrl: null,
     liveDemoUrl: null,
     role: null,

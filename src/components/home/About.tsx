@@ -13,16 +13,17 @@ export default function About() {
           >
             I build software for real people and enjoy understanding the systems
             behind it. At UT Arlington, I learn through research, internships,
-            and personal projects—then turn that curiosity into tools people can
-            use.
+            and personal projects and then turn that curiosity into tools people
+            can use.
           </SectionHeading>
-          <div className="space-y-5 lg:pb-1">
-            <p className="text-sm font-semibold text-[var(--muted)]">
-              Arlington, TX · Expected May 2028
-            </p>
+
+          <div className="mt-4 space-y-5 lg:pb-1">
             <p className="leading-7 text-[var(--muted)]">
               When I’m not coding, I’m usually near water, trying something new,
               or absorbed in whatever I’m learning next.
+            </p>
+            <p className="text-sm font-semibold text-[var(--muted)]">
+              Arlington, TX · Expected May 2028
             </p>
             <div className="flex flex-wrap gap-3">
               <a className="button-primary" href="#projects">

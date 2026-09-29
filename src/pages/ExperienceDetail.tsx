@@ -20,9 +20,9 @@ export default function ExperienceDetail() {
           {experience.organization}
         </h1>
         <p className="mt-3 text-xl text-[var(--accent)]">{experience.role}</p>
-        {experience.description && (
+        {experience.long_description && (
           <p className="mt-8 text-lg leading-8 text-[var(--muted)]">
-            {experience.description}
+            {experience.long_description}
           </p>
         )}
       </article>

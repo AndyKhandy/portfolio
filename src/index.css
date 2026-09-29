@@ -311,13 +311,37 @@ button {
   position: relative;
   width: calc(50% - 1.75rem);
 }
+.timeline-item .card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--accent), var(--card) 92%);
+}
+.timeline-item .card::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  content: "";
+  background: var(--muted);
+}
+
+.timeline-item .card::before {
+  right: 0;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.timeline-item .card p {
+  width: 60%;
+}
 
 .timeline-right {
   margin-left: auto;
 }
 .timeline-dot {
   position: absolute;
-  top: 3rem;
+  top: 6rem;
   width: 0.85rem;
   height: 0.85rem;
   border: 3px solid var(--surface-alt);
@@ -337,6 +361,10 @@ button {
 
 .project-row:first-of-type {
   margin-top: 30px;
+}
+
+.project-row:last-of-type{
+  margin-bottom: 30px;
 }
 
 .project-row {
@@ -514,7 +542,6 @@ button {
   border-radius: 0.75rem;
   object-fit: cover;
 }
-
 
 .contact-gallery img {
   position: absolute;
