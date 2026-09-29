@@ -117,7 +117,7 @@ button {
   overflow: hidden;
   position: relative;
   display: grid;
-  min-height: calc(100svh - 4rem);
+  min-height: 100svh;
   place-items: center;
   background:
     radial-gradient(
@@ -142,9 +142,16 @@ button {
   inset: 0;
   content: "";
   background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 2rem 2rem;
+    radial-gradient(
+      ellipse 90% 35% at 50% 100%,
+      color-mix(in srgb, var(--accent), transparent 82%),
+      transparent 70%
+    ),
+    repeating-radial-gradient(
+      ellipse 120% 42% at 50% 120%,
+      color-mix(in srgb, var(--accent), transparent 60%) 0 1px,
+      transparent 1px 3rem
+    );
   mask-image: linear-gradient(
     to bottom,
     transparent,
@@ -152,7 +159,33 @@ button {
     black 84%,
     transparent
   );
-  opacity: 0.42;
+  opacity: 0.48;
+}
+.hero-waves {
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 110%;
+  height: 42%;
+  overflow: visible;
+  pointer-events: none;
+}
+.hero-waves path {
+  fill: none;
+  stroke: var(--accent);
+  vector-effect: non-scaling-stroke;
+}
+.hero-waves-back {
+  opacity: 0.2;
+}
+.hero-waves-back path {
+  stroke-width: 1;
+}
+.hero-waves-front {
+  opacity: 0.34;
+}
+.hero-waves-front path {
+  stroke-width: 1.5;
 }
 .hero-frame {
   position: absolute;
@@ -179,7 +212,6 @@ button {
     transparent 0 8px,
     color-mix(in srgb, var(--accent), transparent 48%) 9px 10px
   );
-  
 }
 .hero-nameplate {
   position: relative;
@@ -193,10 +225,19 @@ button {
   margin: 0;
   padding: clamp(1.25rem, 3vw, 2rem);
   color: var(--text);
-  font-size: clamp(3.5rem, 11vw, 9rem);
+  font-size: clamp(2rem, 7.5vw, 7rem);
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   line-height: 0.9;
+}
+.hero-roles {
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: clamp(0.72rem, 1.3vw, 0.92rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
 }
 .hero-signal {
   position: absolute;
@@ -292,6 +333,11 @@ button {
   display: grid;
   gap: clamp(5rem, 13vw, 14rem);
 }
+
+.project-row:first-of-type{
+  margin-top: 30px;
+}
+
 .project-row {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);

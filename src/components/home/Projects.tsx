@@ -12,7 +12,7 @@ export default function Projects() {
         />
         <div className="project-list mt-20">
           {projects.map((project: Project, index: number) => {
-            return <ProjectRow project={project} index={index}></ProjectRow>;
+            return <ProjectRow key={project.slug} project={project} index={index} />;
           })}
         </div>
       </div>

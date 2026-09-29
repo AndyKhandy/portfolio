@@ -33,7 +33,6 @@ export function ProjectRow({ project, index }: ProjectProps) {
   return (
     <article
       className={`project-row ${isReversed ? "project-row-reversed" : ""}`}
-      key={project.slug}
     >
       <motion.div
         className="project-visual"

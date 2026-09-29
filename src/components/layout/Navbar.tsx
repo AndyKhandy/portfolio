@@ -1,5 +1,6 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
@@ -8,10 +9,41 @@ const links = ["About", "Experience", "Projects", "Skills", "Contact"];
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const reduceMotion = useReducedMotion();
+  const [showNavbar, setShowNavbar] = useState(pathname !== "/");
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setShowNavbar(true);
+      return;
+    }
+
+    const updateVisibility = () => {
+      const about = document.getElementById("about");
+      setShowNavbar(Boolean(about && window.scrollY >= about.offsetTop - 500));
+    };
+
+    const frame = requestAnimationFrame(updateVisibility);
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateVisibility);
+    };
+  }, [pathname]);
+
   const href = (name: string) =>
     pathname === "/" ? `#${name.toLowerCase()}` : `/#${name.toLowerCase()}`;
+
+  if (!showNavbar) return null;
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[color:var(--surface)/.86] backdrop-blur-xl">
+    <motion.header
+      className="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-[color:var(--surface)/.86] backdrop-blur-xl"
+      initial={reduceMotion ? false : { opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reduceMotion ? 0 : 0.28, ease: "easeOut" }}
+    >
       <nav
         className="page-shell flex h-16 items-center justify-between"
         aria-label="Main navigation"
@@ -61,6 +93,6 @@ export default function Navbar() {
           </span>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }
