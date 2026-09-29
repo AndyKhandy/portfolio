@@ -164,10 +164,10 @@ button {
 .hero-waves {
   position: absolute;
   bottom: 0;
-  left: -5%;
-  width: 110%;
+  left: 0;
+  width: 100%;
   height: 42%;
-  overflow: visible;
+  overflow: hidden;
   pointer-events: none;
 }
 .hero-waves path {
@@ -277,6 +277,7 @@ button {
   color: var(--accent);
   transform: translateY(2px);
 }
+
 .card {
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -285,7 +286,7 @@ button {
   transition: 200ms ease-in;
 }
 
-#skills .card{
+#skills .card {
   text-align: center;
 }
 
@@ -334,7 +335,7 @@ button {
   gap: clamp(5rem, 13vw, 14rem);
 }
 
-.project-row:first-of-type{
+.project-row:first-of-type {
   margin-top: 30px;
 }
 
@@ -478,27 +479,65 @@ button {
   background: color-mix(in srgb, var(--accent), transparent 88%);
   color: var(--accent-strong);
   padding: 0.35rem 0.6rem;
-  font-size: 0.80rem;
+  font-size: 0.8rem;
   font-weight: 800;
 }
 
-#skills .tech-badge{
+#skills .tech-badge {
   background: transparent;
   font-size: 1rem;
 }
 
-
-
-.skill-container{
+.skill-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr))
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 .contact-card {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
   border: 1px solid var(--line);
   border-radius: 1.25rem;
   background: linear-gradient(135deg, var(--card), var(--surface-alt));
   padding: clamp(1.5rem, 5vw, 4rem);
+}
+
+.contact-gallery {
+  position: relative;
+  min-height: clamp(15rem, 27vw, 22rem);
+  margin-top: 3rem;
+}
+.contact-gallery img,
+.contact-featured-photo {
+  border: 3px solid var(--accent);
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+
+.contact-gallery img {
+  position: absolute;
+  width: min(70%, 20rem);
+  height: 100%;
+}
+.contact-gallery img:last-child {
+  right: 0;
+  bottom: -2rem;
+  transform: rotate(3deg);
+}
+.contact-featured-photo {
+  width: 100%;
+  min-height: 22rem;
+  max-height: 32rem;
+  aspect-ratio: 4 / 5;
+  border: 3px solid var(--accent);
+  border-radius: 0.75rem;
+}
+@media (min-width: 1024px) {
+  .contact-card {
+    grid-template-columns: minmax(0, 1.2fr) minmax(15rem, 0.8fr);
+  }
 }
 .detail-grid {
   display: grid;
@@ -527,7 +566,7 @@ button {
   }
   .timeline-item,
   .timeline-right {
-    width: 100%;
+    width: calc(100% - 1.75rem);
     margin-left: 1.75rem;
   }
   .timeline-item .timeline-dot,
@@ -544,12 +583,41 @@ button {
   .project-row-reversed .project-copy {
     order: initial;
   }
+  .project-media {
+    overflow: hidden;
+    border-radius: 1.1rem;
+  }
+  .project-media-stacked .project-shot-1 {
+    transform: translate(-12px, -12px);
+  }
+  .project-media-stacked .project-shot-2 {
+    transform: translate(12px, 12px);
+  }
   .project-actions {
     margin-top: 1.5rem;
   }
   .project-actions > a {
     flex: 1 1 10rem;
     justify-content: center;
+  }
+  .contact-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 0;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+  }
+  .contact-gallery img,
+  .contact-gallery img:last-child {
+    position: static;
+    width: 100%;
+    height: clamp(11rem, 45vw, 16rem);
+    transform: none;
+  }
+  .contact-featured-photo {
+    min-height: 0;
+    height: clamp(16rem, 80vw, 24rem);
+    aspect-ratio: 4 / 3;
   }
 }
 @media (prefers-reduced-motion: reduce) {
