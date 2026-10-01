@@ -6,7 +6,7 @@ interface ProjectMediaProps {
 }
 
 export default function ProjectMedia({ project, offset }: ProjectMediaProps) {
-  const screenshots = project.screenshots.length
+  const screenshots: string[] = project.screenshots.length
     ? project.screenshots
     : project.image
       ? [project.image]

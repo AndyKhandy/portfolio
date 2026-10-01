@@ -31,6 +31,7 @@ export default function ExperienceTimeline() {
                   {item.organization}
                 </p>
                 <h3 className="mt-2 text-xl font-bold">{item.role}</h3>
+                <p className="timeline-dates">{item.dates}</p>
                 {item.description && (
                   <p className="mt-3 leading-7 text-[var(--muted)]">
                     {item.description}
