@@ -57,7 +57,14 @@ export default function Navbar() {
               {name}
             </a>
           ))}
-          <span className="resume-disabled">Resume coming soon</span>
+          <a
+            className="nav-link"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Resume
+          </a>
           <ThemeToggle />
         </div>
         <div className="flex items-center gap-2 md:hidden">
@@ -88,9 +95,15 @@ export default function Navbar() {
               {name}
             </a>
           ))}
-          <span className="mt-2 block py-3 text-sm text-[var(--muted)]">
-            Resume coming soon
-          </span>
+          <a
+            className="mt-2 block py-3 text-sm font-semibold"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setOpen(false)}
+          >
+            Resume
+          </a>
         </div>
       )}
     </motion.header>

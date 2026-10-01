@@ -106,12 +106,6 @@ button {
   color: var(--text);
   cursor: pointer;
 }
-.resume-disabled {
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
 .hero-section {
   isolation: isolate;
   overflow: hidden;

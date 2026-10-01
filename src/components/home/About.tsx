@@ -29,12 +29,14 @@ export default function About() {
               <a className="button-primary" href="#projects">
                 View projects <ArrowDown size={17} />
               </a>
-              <span
-                className="button-secondary cursor-not-allowed opacity-65"
-                aria-disabled="true"
+              <a
+                className="button-secondary"
+                href="/resume.pdf"
+                target="_blank"
+                rel="noreferrer"
               >
-                Resume coming soon
-              </span>
+                Resume
+              </a>
             </div>
             <SocialLinks />
           </div>
