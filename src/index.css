@@ -293,47 +293,127 @@ button {
 .card:hover {
   border: 1px solid rgb(63, 206, 231);
 }
-.timeline {
-  position: relative;
+.experience-explorer {
   display: grid;
-  gap: 1.25rem;
+  grid-template-columns: minmax(13rem, 0.95fr) minmax(0, 1.35fr);
+  align-items: stretch;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  width: min(100%, 70rem);
+  margin-inline: auto;
 }
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 1rem;
-  bottom: 1rem;
-  width: 1px;
-  background: var(--line);
-}
-.timeline-item {
+.experience-envelope {
+  --envelope-fold: color-mix(in srgb, var(--accent) 55%, var(--line));
   position: relative;
-  width: calc(50% - 1.75rem);
+  min-height: 24rem;
+  overflow: visible;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--accent), var(--surface-alt) 92%);
+  margin-top: 3.5rem;
 }
-.timeline-item .card {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background: color-mix(in srgb, var(--accent), var(--card) 92%);
-}
-.timeline-item .card::before {
+.experience-envelope::before {
   position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  width: 10%;
+  top: -5rem;
+  left: 16.5%;
+  z-index: 0;
+  width: 70%;
+  height: 5rem;
   content: "";
-  background: var(--muted);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: color-mix(in srgb, var(--accent) 20%, var(--card));
 }
-
-.timeline-item .card::before {
+.experience-envelope::after {
+  position: absolute;
   right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 75%;
+  content: "";
+  clip-path: polygon(0 0, 39% 52%, 61% 52%, 100% 0, 100% 100%, 0 100%);
+  background: color-mix(in srgb, var(--accent) 16%, var(--surface-alt));
+  filter: drop-shadow(0 -1px 0 var(--envelope-fold));
+  pointer-events: none;
+}
+.experience-envelope:not(.is-open)::before {
+  display: none;
+}
+.experience-envelope:not(.is-open)::after {
+  height: 100%;
+  clip-path: polygon(0 0, 50% 38%, 100% 0, 100% 100%, 0 100%);
+}
+.experience-envelope-toggle {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+.experience-envelope-toggle:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
 }
 
-.timeline-item .card p {
-  width: 60%;
+.experience-slip-stack {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  padding:  0.12rem;
 }
+.experience-slip {
+  text-align: center;
+  position: relative;
+  min-height: 4rem;
+  margin-top: -0.75rem;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.9rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.3;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+.experience-slip:first-child {
+  margin-top: 0;
+  border-radius: 10px 10px 0px 0px;
+}
+.experience-slip:hover,
+.experience-slip:focus-visible,
+.experience-slip[aria-selected="true"] {
+  z-index: 2;
+  border-color: var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  outline: none;
+}
+
+.experience-sheet {
+  min-height: 24rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+.experience-sheet > p:first-child {
+  font-size: 0.95rem;
+}
+.experience-sheet h3 {
+  font-size: clamp(1.55rem, 2.5vw, 2rem);
+  line-height: 1.15;
+}
+.experience-sheet p.leading-7 {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+.experience-sheet .inline-flex {
+  font-size: 0.95rem;
+}
+
 .timeline-dates {
   margin-top: 10px;
   width: auto !important;
@@ -344,24 +424,6 @@ button {
   text-transform: uppercase;
 }
 
-.timeline-right {
-  margin-left: auto;
-}
-.timeline-dot {
-  position: absolute;
-  top: 6rem;
-  width: 0.85rem;
-  height: 0.85rem;
-  border: 3px solid var(--surface-alt);
-  border-radius: 30%;
-  background: var(--accent);
-}
-.timeline-item:not(.timeline-right) .timeline-dot {
-  right: -2.18rem;
-}
-.timeline-right .timeline-dot {
-  left: -2.18rem;
-}
 .project-list {
   display: grid;
   gap: clamp(5rem, 13vw, 14rem);
@@ -371,7 +433,7 @@ button {
   margin-top: 30px;
 }
 
-.project-row:last-of-type{
+.project-row:last-of-type {
   margin-bottom: 30px;
 }
 
@@ -596,19 +658,40 @@ button {
   .hero-signal-bottom {
     bottom: 20%;
   }
-  .timeline::before {
-    left: 0.42rem;
+  .experience-explorer {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
-  .timeline-item,
-  .timeline-right {
-    width: calc(100% - 1.75rem);
-    margin-left: 1.75rem;
+  .experience-envelope {
+    min-height: 0;
+    overflow-x: auto;
+    margin-top: 0;
   }
-  .timeline-item .timeline-dot,
-  .timeline-item:not(.timeline-right) .timeline-dot,
-  .timeline-right .timeline-dot {
-    left: -1.75rem;
-    right: auto;
+  .experience-envelope::before,
+  .experience-envelope::after {
+    display: none;
+  }
+  .experience-slip-stack {
+    display: flex;
+    width: max-content;
+    gap: 0.65rem;
+    padding: 1rem;
+    transform: none;
+  }
+  .experience-slip,
+  .experience-slip:first-child {
+    width: min(12rem, 70vw);
+    min-height: 3.5rem;
+    margin: 0;
+    border-radius: 0.7rem;
+  }
+  .experience-slip:hover,
+  .experience-slip:focus-visible,
+  .experience-slip[aria-selected="true"] {
+    transform: translateY(-0.25rem);
+  }
+  .experience-sheet {
+    min-height: 0;
   }
   .project-row,
   .project-row-reversed {
