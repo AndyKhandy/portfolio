@@ -8,7 +8,7 @@
   --text: #0b1c33;
   --muted: #52657b;
   --line: #d7e4ef;
-  --accent: #087fbf;
+  --accent: #0674ad;
   --accent-strong: #05669e;
 }
 .dark {
@@ -31,6 +31,7 @@ body {
   margin: 0;
   min-width: 320px;
   background: var(--surface);
+  color: var(--text);
 }
 a {
   color: inherit;
@@ -38,6 +39,10 @@ a {
 }
 button {
   font: inherit;
+}
+:where(a, button):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
 }
 .page-shell {
   width: min(1200px, calc(100% - 2rem));
@@ -99,8 +104,8 @@ button {
   padding: 0.68rem 0.95rem;
 }
 .icon-button {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.75rem;
+  width: 2.75rem;
   border: 1px solid var(--line);
   background: var(--card);
   color: var(--text);
@@ -386,7 +391,10 @@ button {
   border-color: var(--accent);
   background: var(--surface);
   color: var(--accent);
-  outline: none;
+}
+.experience-slip:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .experience-sheet {
