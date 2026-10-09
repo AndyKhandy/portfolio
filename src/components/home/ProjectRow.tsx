@@ -105,9 +105,6 @@ export function ProjectRow({ project, index }: ProjectProps) {
               </button>
             </div>
           )}
-          <Link className="button-primary" to={`/projects/${project.slug}`}>
-            More Info!
-          </Link>
           {project.githubUrl && (
             <a
               className="button-secondary"
@@ -128,6 +125,11 @@ export function ProjectRow({ project, index }: ProjectProps) {
               <ExternalLink size={17} /> Live demo
             </a>
           )}
+        </div>
+        <div className="mt-5">
+          <Link className="button-primary" to={`/projects/${project.slug}`}>
+            More Info!
+          </Link>
         </div>
       </motion.div>
     </article>

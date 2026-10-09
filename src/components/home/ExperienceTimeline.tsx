@@ -1,15 +1,26 @@
-import { useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { experiences } from "../../data/experiences";
 import SectionHeading from "../ui/SectionHeading";
 export default function ExperienceTimeline() {
-  const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
+  const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(() =>
+    window.matchMedia("(max-width: 767px)").matches,
+  );
   const [selectedIndex, setSelectedIndex] = useState(0);
   const reduceMotion = useReducedMotion();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const selectedExperience = experiences[selectedIndex];
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const syncEnvelope = (event: MediaQueryListEvent) =>
+      setIsEnvelopeOpen(event.matches);
+
+    media.addEventListener("change", syncEnvelope);
+    return () => media.removeEventListener("change", syncEnvelope);
+  }, []);
 
   function selectExperience(index: number) {
     setSelectedIndex(index);

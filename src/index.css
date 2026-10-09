@@ -329,6 +329,7 @@ button {
   z-index: 2;
   height: 75%;
   content: "";
+  border-radius: 15px;
   clip-path: polygon(0 0, 39% 52%, 61% 52%, 100% 0, 100% 100%, 0 100%);
   background: color-mix(in srgb, var(--accent) 16%, var(--surface-alt));
   filter: drop-shadow(0 -1px 0 var(--envelope-fold));
@@ -657,6 +658,7 @@ button {
   .hero-signal-top {
     top: 20%;
   }
+
   .hero-signal-bottom {
     bottom: 20%;
   }
