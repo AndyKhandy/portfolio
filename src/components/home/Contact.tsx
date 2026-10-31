@@ -1,7 +1,10 @@
 import SocialLinks from "../ui/SocialLinks";
+import OceanDecor from "../ui/OceanDecor";
 export default function Contact() {
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section ocean-section">
+      <OceanDecor variant="wave" className="section-wave" />
+      <OceanDecor variant="coordinates" className="section-coordinate coordinate-contact" />
       <div className="page-shell">
         <div className="contact-card">
           <div className="contact-copy">
