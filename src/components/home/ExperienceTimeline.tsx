@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { experiences } from "../../data/experiences";
+import OceanDecor from "../ui/OceanDecor";
 import SectionHeading from "../ui/SectionHeading";
 export default function ExperienceTimeline() {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(() =>
@@ -40,7 +41,9 @@ export default function ExperienceTimeline() {
   }
 
   return (
-    <section id="experience" className="section section-tint">
+    <section id="experience" className="section section-tint ocean-section ocean-section-ornamented">
+      <OceanDecor variant="wave" className="section-wave" />
+      <OceanDecor variant="compass-ribbon" className="experience-route" />
       <div className="page-shell">
         <SectionHeading
           eyebrow="Experience"

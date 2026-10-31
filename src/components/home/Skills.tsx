@@ -1,10 +1,13 @@
 import { Code2 } from "lucide-react";
 import { skillIcons, skills } from "../../data/skills";
+import OceanDecor from "../ui/OceanDecor";
 import SectionHeading from "../ui/SectionHeading";
 
 export default function Skills() {
   return (
-    <section id="skills" className="section section-tint">
+    <section id="skills" className="section section-tint ocean-section">
+      <OceanDecor variant="wave" className="section-wave" />
+      <OceanDecor variant="coordinates" className="section-coordinate coordinate-skills" />
       <div className="page-shell">
         <SectionHeading eyebrow="Skills" title="A growing toolkit." />
         <div className="mt-10 grid gap-15 sm:grid-cols-2 lg:grid-cols-3">

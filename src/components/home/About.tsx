@@ -1,10 +1,13 @@
 import { ArrowDown } from "lucide-react";
 import SocialLinks from "../ui/SocialLinks";
 import SectionHeading from "../ui/SectionHeading";
+import OceanDecor from "../ui/OceanDecor";
 
 export default function About() {
   return (
-    <section id="about" className="section">
+    <section id="about" className="section ocean-section">
+      <OceanDecor variant="wave" className="section-wave" />
+      <OceanDecor variant="coordinates" className="section-coordinate coordinate-about" />
       <div className="page-shell grid lg:grid-cols-[2fr_1fr] gap-10 sm:grid-cols-1 lg:items-end">
         <div className="left">
           <SectionHeading
