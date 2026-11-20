@@ -15,6 +15,16 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    slug: "jpmorgan-chase",
+    organization: "JPMorganChase",
+    role: "Software Engineer Intern (Incoming)",
+    dates: "Summer 2027 (anticipated)",
+    description: "Incoming Software Engineer Intern at JPMorganChase.",
+    long_description:
+      "Received an offer after participating in Code for Good Columbus, JPMorganChase's Tech for Social Good hackathon. Preparing to join as a Software Engineer Intern in Summer 2027, with an interest in contributing to collaborative engineering work and growing through the firm's early-career software engineering community.",
+    logo: null,
+  },
+  {
     slug: "lockheed-martin-test-engineer-intern",
     organization: "Lockheed Martin Missiles & Fire Control",
     role: "Test Engineer Intern",
@@ -37,6 +47,17 @@ export const experiences: Experience[] = [
     },
   },
   {
+    slug: "break-through-tech-ai",
+    organization: "Break Through Tech",
+    role: "AI Program Fellow (Incoming)",
+    dates: "Begins December 1, 2026",
+    description:
+      "Incoming fellow in Break Through Tech’s AI Program, focused on machine-learning foundations, real-world projects, and mentorship.",
+    long_description:
+      "Beginning December 1, I will participate in Break Through Tech’s AI Program for undergraduates pursuing data science, AI, and machine learning. The program includes machine-learning foundations, an AI Studio project applying ML to a real-world challenge, and mentorship and career coaching. I’m looking forward to building stronger AI/ML skills and adding a hands-on project to my portfolio.",
+    logo: null,
+  },
+  {
     slug: "scope-lab-reu",
     organization: "Computing Research Association",
     role: "Undergraduate Researcher",
@@ -57,17 +78,6 @@ export const experiences: Experience[] = [
       takeaway:
         "The work has taught me to build around a research question, make architectural trade-offs explicit, and distinguish a working prototype from a validated research finding.",
     },
-  },
-  {
-    slug: "fidelity-fidhacks-westlake-2026",
-    organization: "Fidelity FidHacks Westlake 2026",
-    role: "Fluuurish — 1st place",
-    dates: "July 2026",
-    description:
-      "Built a gamified financial literacy app with my team and earned 1st place at Fidelity’s FidHacks Westlake hackathon.",
-    long_description:
-      "Participated in Fidelity Investments’ FidHacks Westlake hackathon, where my team built Fluuurish, a gamified financial literacy mobile application focused on helping early-career women build stronger financial habits. I contributed to product ideation, backend development, and the final pitch, including features such as a progress garden, community tools, budgeting visualizations, onboarding assessments, and an AI financial-learning companion. The application was built with React Native, Expo, FastAPI, PostgreSQL, Docker, and external APIs. Our team placed 1st out of 11 teams after incorporating mentor feedback and refining the product during the 24-hour event.",
-    logo: null,
   },
   {
     slug: "acm-uta-community-officer",
