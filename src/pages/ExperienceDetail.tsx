@@ -25,6 +25,30 @@ export default function ExperienceDetail() {
             {experience.long_description}
           </p>
         )}
+        {experience.publicDetail && (
+          <div className="experience-detail-grid mt-14">
+            <section>
+              <p className="eyebrow">Scope</p>
+              <p className="mt-3 leading-7 text-[var(--muted)]">
+                {experience.publicDetail.context}
+              </p>
+            </section>
+            <section>
+              <h2 className="text-lg font-bold">Applied engineering</h2>
+              <ul className="case-study-list mt-4">
+                {experience.publicDetail.contributions.map((contribution) => (
+                  <li key={contribution}>{contribution}</li>
+                ))}
+              </ul>
+            </section>
+            <section>
+              <h2 className="text-lg font-bold">Takeaway</h2>
+              <p className="mt-2 leading-7 text-[var(--muted)]">
+                {experience.publicDetail.takeaway}
+              </p>
+            </section>
+          </div>
+        )}
       </article>
     </main>
   );

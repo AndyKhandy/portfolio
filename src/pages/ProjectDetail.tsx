@@ -1,6 +1,12 @@
-import { ArrowLeft, Code2, ExternalLink } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Code2, ExternalLink } from "lucide-react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { projects, type Update, type UpdateType } from "../data/projects";
+import {
+  projects,
+  type CaseStudy,
+  type CaseStudyHighlight,
+  type Update,
+  type UpdateType,
+} from "../data/projects";
 
 interface DetailProps {
   label: string;
@@ -69,8 +75,9 @@ export default function ProjectDetail() {
             </a>
           )}
         </div>
+        {project.caseStudy && <CaseStudyContent caseStudy={project.caseStudy} />}
         {(project.challenges || project.updates?.length || project.result) && (
-          <div className="detail-grid mt-16">
+          <div className={`detail-grid ${project.caseStudy ? "mt-10" : "mt-16"}`}>
             {project.challenges && (
               <Detail label="Challenges" value={project.challenges} />
             )}
@@ -82,6 +89,75 @@ export default function ProjectDetail() {
         )}
       </article>
     </main>
+  );
+}
+
+function CaseStudyContent({ caseStudy }: { caseStudy: CaseStudy }) {
+  return (
+    <div className="case-study mt-16">
+      <section className="case-study-intro">
+        <div>
+          <p className="eyebrow">Context</p>
+          <p className="mt-3 leading-7 text-[var(--muted)]">{caseStudy.context}</p>
+        </div>
+        <div className="case-study-outcome">
+          <CheckCircle2 aria-hidden="true" size={20} />
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.1em]">Outcome</p>
+            <p className="mt-2 leading-7">{caseStudy.outcome}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="built-heading">
+        <h2 id="built-heading">What I built</h2>
+        <ol className="case-study-list">
+          {caseStudy.ownership.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="architecture-heading">
+        <h2 id="architecture-heading">Architecture at a glance</h2>
+        <ol className="architecture-flow">
+          {caseStudy.architecture.map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="decision-heading">
+        <h2 id="decision-heading">Key engineering decision</h2>
+        <div className="decision-card">
+          <h3>{caseStudy.decision.title}</h3>
+          <p>{caseStudy.decision.rationale}</p>
+        </div>
+      </section>
+
+      <section className="case-study-section" aria-labelledby="highlights-heading">
+        <h2 id="highlights-heading">Engineering highlights</h2>
+        <div className="case-study-highlights">
+          {caseStudy.highlights.map((highlight) => (
+            <HighlightCard highlight={highlight} key={highlight.title} />
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function HighlightCard({ highlight }: { highlight: CaseStudyHighlight }) {
+  return (
+    <article className="case-study-highlight">
+      <span
+        className={`case-study-label ${updateStyles[highlight.type]}`}
+      >
+        {highlight.type}
+      </span>
+      <h3>{highlight.title}</h3>
+      <p>{highlight.text}</p>
+    </article>
   );
 }
 
