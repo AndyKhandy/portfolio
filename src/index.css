@@ -175,10 +175,26 @@ button {
   inset: 0;
   content: "";
   background-image:
-    radial-gradient(circle at 14% 22%, color-mix(in srgb, var(--accent), transparent 64%) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 82% 16%, color-mix(in srgb, var(--accent), transparent 70%) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 72% 48%, color-mix(in srgb, var(--accent), transparent 76%) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 24% 72%, color-mix(in srgb, var(--accent), transparent 78%) 0 1px, transparent 1.5px);
+    radial-gradient(
+      circle at 14% 22%,
+      color-mix(in srgb, var(--accent), transparent 64%) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 82% 16%,
+      color-mix(in srgb, var(--accent), transparent 70%) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 72% 48%,
+      color-mix(in srgb, var(--accent), transparent 76%) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 24% 72%,
+      color-mix(in srgb, var(--accent), transparent 78%) 0 1px,
+      transparent 1.5px
+    );
   opacity: 0.7;
   pointer-events: none;
 }
@@ -268,11 +284,31 @@ button {
   inset: 0;
   content: "";
   background-image:
-    radial-gradient(circle at 10% 16%, color-mix(in srgb, var(--accent), transparent 32%) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 22% 32%, color-mix(in srgb, var(--accent), transparent 48%) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 76% 20%, color-mix(in srgb, var(--accent), transparent 30%) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 88% 54%, color-mix(in srgb, var(--accent), transparent 44%) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 38% 74%, color-mix(in srgb, var(--accent), transparent 50%) 0 1px, transparent 1.5px),
+    radial-gradient(
+      circle at 10% 16%,
+      color-mix(in srgb, var(--accent), transparent 32%) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 22% 32%,
+      color-mix(in srgb, var(--accent), transparent 48%) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 76% 20%,
+      color-mix(in srgb, var(--accent), transparent 30%) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 88% 54%,
+      color-mix(in srgb, var(--accent), transparent 44%) 0 1px,
+      transparent 1.5px
+    ),
+    radial-gradient(
+      circle at 38% 74%,
+      color-mix(in srgb, var(--accent), transparent 50%) 0 1px,
+      transparent 1.5px
+    ),
     repeating-radial-gradient(
       ellipse 120% 42% at 50% 120%,
       color-mix(in srgb, var(--accent), transparent 72%) 0 1px,
@@ -589,7 +625,6 @@ button {
   padding: 1.5rem;
   transition: 200ms ease-in;
 }
-
 #skills .card {
   text-align: center;
 }
@@ -597,139 +632,197 @@ button {
 .card:hover {
   border-color: var(--accent);
 }
+#experience {
+  --experience-canvas: var(--surface-alt);
+  --experience-panel: var(--card);
+  --experience-rail: color-mix(in srgb, var(--text), var(--accent) 36%);
+  --experience-rail-text: var(--card);
+  --experience-rail-muted: color-mix(in srgb, var(--card), var(--accent) 25%);
+  --experience-ink: var(--text);
+  --experience-muted: var(--muted);
+  --experience-line: var(--line);
+  --experience-emphasis: var(--accent);
+  --experience-emphasis-strong: var(--accent-strong);
+  --experience-active: color-mix(in srgb, var(--accent), transparent 82%);
+  background: var(--experience-canvas);
+  color: var(--experience-ink);
+}
+.dark #experience {
+  --experience-rail: color-mix(in srgb, var(--surface), var(--accent) 40%);
+  --experience-rail-text: var(--text);
+  --experience-rail-muted: color-mix(in srgb, var(--text), var(--accent) 28%);
+}
+#experience .experience-route {
+  color: var(--experience-emphasis);
+}
 .experience-explorer {
   display: grid;
-  grid-template-columns: minmax(13rem, 0.95fr) minmax(0, 1.35fr);
-  align-items: stretch;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  width: min(100%, 70rem);
+  grid-template-columns: minmax(17rem, 0.75fr) minmax(0, 1.35fr);
+  width: min(100%, 76rem);
   margin-inline: auto;
-}
-.experience-envelope {
-  --envelope-fold: color-mix(in srgb, var(--accent) 55%, var(--line));
-  position: relative;
-  min-height: 24rem;
-  overflow: visible;
-  border: 1px solid var(--line);
+  overflow: hidden;
+  border: 1px solid var(--experience-line);
   border-radius: 1rem;
-  background: color-mix(in srgb, var(--accent), var(--surface-alt) 92%);
-  margin-top: 3.5rem;
+  background: var(--experience-panel);
 }
-.experience-envelope::before {
+.experience-archive {
+  position: relative;
+  display: grid;
+  align-content: start;
+  background: var(--experience-rail);
+  padding: 1.25rem 0;
+}
+.experience-archive::before {
   position: absolute;
-  top: -5rem;
-  left: 16.5%;
-  z-index: 0;
-  width: 70%;
-  height: 5rem;
+  top: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  width: 1px;
   content: "";
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: color-mix(in srgb, var(--accent) 20%, var(--card));
+  background: color-mix(in srgb, var(--experience-rail-text), transparent 76%);
 }
-.experience-envelope::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  height: 75%;
-  content: "";
-  border-radius: 15px;
-  clip-path: polygon(0 0, 39% 52%, 61% 52%, 100% 0, 100% 100%, 0 100%);
-  background: color-mix(in srgb, var(--accent) 16%, var(--surface-alt));
-  filter: drop-shadow(0 -1px 0 var(--envelope-fold));
-  pointer-events: none;
-}
-.experience-envelope:not(.is-open)::before {
-  display: none;
-}
-.experience-envelope:not(.is-open)::after {
-  height: 100%;
-  clip-path: polygon(0 0, 50% 38%, 100% 0, 100% 100%, 0 100%);
-}
-.experience-envelope-toggle {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
+.experience-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
   width: 100%;
   border: 0;
-  border-radius: inherit;
   background: transparent;
+  color: var(--experience-rail-text);
   cursor: pointer;
-}
-.experience-envelope-toggle:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.experience-slip-stack {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  padding:  0.12rem;
-}
-.experience-slip {
-  text-align: center;
-  position: relative;
-  min-height: 4rem;
-  margin-top: -0.75rem;
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--text);
-  cursor: pointer;
-  padding: 0.9rem 1rem;
-  font-size: 0.8rem;
-  font-weight: 800;
-  line-height: 1.3;
+  padding: 1.2rem 1.25rem;
+  text-align: left;
   transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
+    background 180ms ease,
+    color 180ms ease,
+    padding 180ms ease;
 }
-.experience-slip:first-child {
-  margin-top: 0;
-  border-radius: 10px 10px 0px 0px;
+.experience-entry:hover,
+.experience-entry[aria-selected="true"] {
+  background: var(--experience-active);
+  color: var(--experience-rail-text);
+  padding-left: 1.55rem;
 }
-.experience-slip:hover,
-.experience-slip:focus-visible,
-.experience-slip[aria-selected="true"] {
-  z-index: 2;
-  border-color: var(--accent);
-  background: var(--surface);
-  color: var(--accent);
+.experience-entry:focus-visible {
+  outline: 3px solid var(--experience-emphasis);
+  outline-offset: -3px;
 }
-.experience-slip:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
+.experience-entry-index {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  border: 1px solid
+    color-mix(in srgb, var(--experience-rail-text), transparent 58%);
+  border-radius: 50%;
+  background: var(--experience-rail);
+  color: var(--experience-rail-muted);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
 }
-
-.experience-sheet {
-  min-height: 24rem;
-  padding: clamp(1.5rem, 4vw, 3rem);
+.experience-entry[aria-selected="true"] .experience-entry-index {
+  border-color: var(--experience-emphasis);
+  background: var(--experience-emphasis);
+  color: var(--experience-rail);
 }
-.experience-sheet > p:first-child {
-  font-size: 0.95rem;
+.experience-entry-copy {
+  display: grid;
+  gap: 0.35rem;
 }
-.experience-sheet h3 {
-  font-size: clamp(1.55rem, 2.5vw, 2rem);
-  line-height: 1.15;
+.experience-entry-role {
+  font-size: 0.88rem;
+  font-weight: 750;
+  line-height: 1.3;
 }
-.experience-sheet p.leading-7 {
-  font-size: 1.05rem;
-  line-height: 1.8;
-}
-.experience-sheet .inline-flex {
-  font-size: 0.95rem;
-}
-
-.timeline-dates {
-  margin-top: 10px;
-  width: auto !important;
-  color: var(--muted);
-  font-size: 0.75rem;
+.experience-entry-dates {
+  color: var(--experience-rail-muted);
+  font-size: 0.7rem;
   font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+.experience-entry-arrow {
+  color: var(--experience-emphasis);
+  opacity: 0;
+  transform: translateX(-0.35rem);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+.experience-entry:hover .experience-entry-arrow,
+.experience-entry[aria-selected="true"] .experience-entry-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+.experience-sheet {
+  display: flex;
+  min-height: 29rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 5rem);
+}
+.experience-sheet-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--experience-line);
+  padding-bottom: 1rem;
+}
+.experience-organization {
+  margin: 0;
+  color: var(--experience-emphasis-strong);
+  font-size: 0.95rem;
+  font-weight: 750;
+}
+.timeline-dates {
+  margin: 0;
+  color: var(--experience-muted);
+  font-size: 0.68rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+.experience-sheet h3 {
+  max-width: 19ch;
+  margin: 1.5rem 0 0;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+.experience-description {
+  max-width: 62ch;
+  margin: 1.5rem 0 0;
+  color: var(--experience-muted);
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+.experience-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  margin-top: 2rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--experience-emphasis), transparent 56%);
+  color: var(--experience-emphasis-strong);
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding-bottom: 0.25rem;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.experience-link:hover {
+  border-color: var(--experience-emphasis-strong);
+  color: var(--experience-ink);
 }
 
 .project-list {
@@ -900,7 +993,6 @@ button {
   background: transparent;
   font-size: 1rem;
 }
-
 .skill-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -1012,35 +1104,37 @@ button {
   }
   .experience-explorer {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
   }
-  .experience-envelope {
-    min-height: 0;
+  .experience-archive {
+    display: flex;
     overflow-x: auto;
-    margin-top: 0;
+    padding: 0;
   }
-  .experience-envelope::before,
-  .experience-envelope::after {
+  .experience-archive::before {
     display: none;
   }
-  .experience-slip-stack {
-    display: flex;
-    width: max-content;
-    gap: 0.65rem;
+  .experience-entry {
+    grid-template-columns: 1.75rem minmax(9.5rem, 1fr);
+    flex: 0 0 min(15rem, 74vw);
+    min-height: 7.5rem;
     padding: 1rem;
-    transform: none;
   }
-  .experience-slip,
-  .experience-slip:first-child {
-    width: min(12rem, 70vw);
-    min-height: 3.5rem;
-    margin: 0;
-    border-radius: 0.7rem;
+  .experience-entry:hover,
+  .experience-entry[aria-selected="true"] {
+    padding-left: 1rem;
   }
-  .experience-slip:hover,
-  .experience-slip:focus-visible,
-  .experience-slip[aria-selected="true"] {
-    transform: translateY(-0.25rem);
+  .experience-entry-arrow {
+    display: none;
+  }
+  .experience-sheet {
+    min-height: 0;
+    padding: 2rem 1.5rem 2.25rem;
+  }
+  .experience-sheet h3 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+  .experience-description {
+    font-size: 1rem;
   }
   .experience-sheet {
     min-height: 0;

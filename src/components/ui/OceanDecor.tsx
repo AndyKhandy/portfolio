@@ -235,6 +235,7 @@ function HeroStarsDecor({ className }: Pick<OceanDecorProps, "className">) {
             >
               <path
                 d={`M0 ${-star.size} ${star.size} 0 0 ${star.size} ${-star.size} 0Z`}
+                fill="none"
               />
               <path
                 d={`M0 ${-star.size * 0.45} ${star.size * 0.45} 0 0 ${star.size * 0.45} ${-star.size * 0.45} 0Z`}

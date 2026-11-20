@@ -1,27 +1,15 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useRef, useState, type KeyboardEvent } from "react";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { experiences } from "../../data/experiences";
 import OceanDecor from "../ui/OceanDecor";
 import SectionHeading from "../ui/SectionHeading";
 export default function ExperienceTimeline() {
-  const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(() =>
-    window.matchMedia("(max-width: 767px)").matches,
-  );
   const [selectedIndex, setSelectedIndex] = useState(0);
   const reduceMotion = useReducedMotion();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const selectedExperience = experiences[selectedIndex];
-
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px)");
-    const syncEnvelope = (event: MediaQueryListEvent) =>
-      setIsEnvelopeOpen(event.matches);
-
-    media.addEventListener("change", syncEnvelope);
-    return () => media.removeEventListener("change", syncEnvelope);
-  }, []);
 
   function selectExperience(index: number) {
     setSelectedIndex(index);
@@ -41,60 +29,44 @@ export default function ExperienceTimeline() {
   }
 
   return (
-    <section id="experience" className="section section-tint ocean-section ocean-section-ornamented">
-      <OceanDecor variant="wave" className="section-wave" />
+    <section id="experience" className="section ocean-section ocean-section-ornamented">
       <OceanDecor variant="compass-ribbon" className="experience-route" />
       <div className="page-shell">
         <SectionHeading
-          eyebrow="Experience"
-          title="Industry, research, and community."
+          title="Experience across industry, research, and community."
         />
         <div className="experience-explorer mt-12">
-          <div className={`experience-envelope ${isEnvelopeOpen ? "is-open" : ""}`}>
-            {!isEnvelopeOpen && (
+          <div aria-label="Select an experience" className="experience-archive" role="tablist">
+            {experiences.map((item, index) => (
               <button
-                aria-label="Open experience envelope"
-                className="experience-envelope-toggle"
-                onClick={() => setIsEnvelopeOpen(true)}
+                aria-controls={`experience-panel-${item.slug}`}
+                aria-selected={index === selectedIndex}
+                className="experience-entry"
+                id={`experience-tab-${item.slug}`}
+                key={item.slug}
+                onClick={() => selectExperience(index)}
+                onKeyDown={(event) => handleTabKeyDown(event, index)}
+                ref={(element) => { tabRefs.current[index] = element; }}
+                role="tab"
+                tabIndex={index === selectedIndex ? 0 : -1}
                 type="button"
-              />
-            )}
-            <AnimatePresence>
-              {isEnvelopeOpen && (
-                <motion.div
-                  animate={{ opacity: 1, y: 0 }}
-                  aria-label="Select an experience"
-                  className="experience-slip-stack"
-                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                  role="tablist"
-                  transition={{ duration: 0.3 }}
-                >
-                  {experiences.map((item, index) => (
-                    <button
-                      aria-controls={`experience-panel-${item.slug}`}
-                      aria-selected={index === selectedIndex}
-                      className="experience-slip"
-                      id={`experience-tab-${item.slug}`}
-                      key={item.slug}
-                      onClick={() => selectExperience(index)}
-                      onKeyDown={(event) => handleTabKeyDown(event, index)}
-                      ref={(element) => { tabRefs.current[index] = element; }}
-                      role="tab"
-                      tabIndex={index === selectedIndex ? 0 : -1}
-                      type="button"
-                    >
-                      {item.role}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+              >
+                <span className="experience-entry-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="experience-entry-copy">
+                  <span className="experience-entry-role">{item.role}</span>
+                  <span className="experience-entry-dates">{item.dates}</span>
+                </span>
+                <ChevronRight aria-hidden="true" className="experience-entry-arrow" size={18} />
+              </button>
+            ))}
           </div>
           <AnimatePresence mode="wait">
             <motion.article
               animate={{ opacity: 1, x: 0 }}
               aria-labelledby={`experience-tab-${selectedExperience.slug}`}
-              className="experience-sheet card"
+              className="experience-sheet"
               exit={reduceMotion ? undefined : { opacity: 0, x: -12 }}
               id={`experience-panel-${selectedExperience.slug}`}
               initial={reduceMotion ? false : { opacity: 0, x: 12 }}
@@ -102,18 +74,18 @@ export default function ExperienceTimeline() {
               role="tabpanel"
               transition={{ duration: 0.22 }}
             >
-              <p className="text-sm font-semibold text-[var(--accent)]">
-                {selectedExperience.organization}
-              </p>
-              <h3 className="mt-2 text-xl font-bold">{selectedExperience.role}</h3>
-              <p className="timeline-dates">{selectedExperience.dates}</p>
+              <div className="experience-sheet-heading">
+                <p className="experience-organization">{selectedExperience.organization}</p>
+                <p className="timeline-dates">{selectedExperience.dates}</p>
+              </div>
+              <h3>{selectedExperience.role}</h3>
               {selectedExperience.description && (
-                <p className="mt-3 leading-7 text-[var(--muted)]">
+                <p className="experience-description">
                   {selectedExperience.description}
                 </p>
               )}
               <Link
-                className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-[var(--accent)] hover:underline"
+                className="experience-link"
                 to={`/experience/${selectedExperience.slug}`}
               >
                 More context <ArrowUpRight size={15} />
