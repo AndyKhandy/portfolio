@@ -5,7 +5,12 @@ export interface Experience{
   dates: string,
   description: string | null,
   long_description: string | null,
-  logo: string | null
+  logo: string | null,
+  publicDetail?: {
+    context: string,
+    contributions: string[],
+    takeaway: string
+  }
 }
 
 export const experiences: Experience[] = [
@@ -16,7 +21,16 @@ export const experiences: Experience[] = [
     dates: "June 2026 - Present",
     description: "Supported systems integration and testing by developing software interfaces and helping verify hardware-software interactions.",
     long_description: "Worked as a Test Engineer Intern in Lockheed Martin’s Systems Integration Lab, contributing to integration, testing, and verification efforts across hardware and software systems. My work included developing software interfaces through an existing hardware abstraction layer, supporting communication between multiple components, and helping document and validate system behavior. The role also gave me experience working in an Agile engineering environment with tools such as LabVIEW, TestStand, GitLab, and Jira while collaborating with engineers across different disciplines.",
-    logo: null
+    logo: null,
+    publicDetail: {
+      context: "Public-safe summary: I worked on software that supports hardware testing and validation in a systems integration environment.",
+      contributions: [
+        "Built a LabVIEW GUI that helps engineers interact with hardware components during test and simulation work.",
+        "Worked through an existing hardware abstraction layer so the interface did not need to handle device-specific logic directly.",
+        "Collaborated with software, electrical, mechanical, and systems engineers while validating behavior against requirements.",
+      ],
+      takeaway: "The role reinforced that reliable software depends on clear interfaces, verification, and communicating at the right technical level for each engineering partner.",
+    }
   },
   {
     slug: "scope-lab-reu",

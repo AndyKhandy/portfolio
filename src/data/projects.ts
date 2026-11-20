@@ -12,6 +12,7 @@ export interface Project {
   updates: Update[] | null;
   result: string | null;
   changes: string | null;
+  caseStudy?: CaseStudy;
 }
 
 export type UpdateType = "feature" | "fix" | "improvement" | "refactor";
@@ -20,6 +21,24 @@ export interface Update {
   date: string;
   type: UpdateType;
   text: string;
+}
+
+export interface CaseStudyHighlight {
+  type: UpdateType;
+  title: string;
+  text: string;
+}
+
+export interface CaseStudy {
+  context: string;
+  ownership: string[];
+  architecture: string[];
+  decision: {
+    title: string;
+    rationale: string;
+  };
+  highlights: CaseStudyHighlight[];
+  outcome: string;
 }
 
 export const projects: Project[] = [
@@ -47,6 +66,45 @@ export const projects: Project[] = [
     githubUrl: null,
     liveDemoUrl: null,
     challenges: null,
+    caseStudy: {
+      context:
+        "UTA's largest Computer Science tutoring center needed a reliable alternative to paper sign-in sheets, which made attendance and occupancy difficult to track.",
+      ownership: [
+        "Built React and TypeScript dashboard experiences for center operations.",
+        "Integrated Supabase data access and attendance analytics.",
+        "Translated director feedback into dashboard requirements and helped coordinate the team.",
+      ],
+      architecture: [
+        "University ID swipe",
+        "Python scanner program",
+        "Supabase PostgreSQL + RLS",
+        "Role-based React dashboards",
+      ],
+      decision: {
+        title: "Keep attendance events and reporting summaries separate",
+        rationale:
+          "Raw swipe events preserve an audit trail, while daily summaries keep occupancy and reporting views fast without repeatedly processing every scan.",
+      },
+      highlights: [
+        {
+          type: "feature",
+          title: "Tutor arrival visibility",
+          text: "Added scheduled-shift status so administrators can quickly see which tutors have arrived.",
+        },
+        {
+          type: "fix",
+          title: "Defensive swipe handling",
+          text: "Ignored rapid duplicate scans and prevented unmatched check-ins from carrying into the next day.",
+        },
+        {
+          type: "refactor",
+          title: "Centralized database mapping",
+          text: "Moved database-to-frontend property conversion into a shared helper after resolving snake_case and camelCase mismatches.",
+        },
+      ],
+      outcome:
+        "Presented at STEMPOSIUM and approved for continued development toward real-world deployment.",
+    },
     updates: [
       {
         date: "10/26/2026",
@@ -97,6 +155,46 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/AndyKhandy/UR2PhD-Alloy",
     liveDemoUrl: null,
     challenges: null,
+    caseStudy: {
+      context:
+        "Alloy is powerful for formal modeling but its logic and declarative constraints can be difficult for beginners to learn through text alone.",
+      ownership: [
+        "Developed 41 custom Blockly components for Alloy constructs.",
+        "Built generators that turn connected blocks into Alloy source code.",
+        "Implemented the Spring Boot integration with the Alloy Analyzer and interactive instance graphs.",
+      ],
+      architecture: [
+        "React + Blockly workspace",
+        "Alloy code generation",
+        "Spring Boot + Alloy Analyzer",
+        "JSON results",
+        "ELK.js + React Flow graph",
+      ],
+      decision: {
+        title: "Use Blockly and Spring Boot instead of building editor infrastructure from scratch",
+        rationale:
+          "Blockly supplied mature drag-and-drop and connection behavior, while Spring Boot directly integrates with Alloy's Java API. That left more time for the learning-focused modeling experience.",
+      },
+      highlights: [
+        {
+          type: "feature",
+          title: "Visual Alloy modeling",
+          text: "Created custom blocks and generators for most non-temporal Alloy constructs.",
+        },
+        {
+          type: "feature",
+          title: "Interactive solver results",
+          text: "Converted analyzer atoms and relations into pan-and-zoom React Flow graphs with ELK-based layout.",
+        },
+        {
+          type: "improvement",
+          title: "Guided structural validity",
+          text: "Used block connection constraints to reduce invalid expression combinations before a model is run.",
+        },
+      ],
+      outcome:
+        "Established the technical foundation for ongoing undergraduate research into block-based Alloy learning experiences.",
+    },
     updates: [
       {
         date: "9/03/2026",
@@ -142,6 +240,46 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/KrishPatelShah/FidHacks",
     liveDemoUrl: "https://fluuurish.vercel.app/",
     challenges: null,
+    caseStudy: {
+      context:
+        "Fluuurish helps early-career women build financial knowledge and habits through lessons, quizzes, budgeting tools, and a progress garden.",
+      ownership: [
+        "Built React Native and TypeScript features, including stock-market data integration.",
+        "Integrated financial lessons and Gemini-generated quiz experiences.",
+        "Helped connect frontend and backend work while unblocking teammates during a 24-hour hackathon.",
+      ],
+      architecture: [
+        "React Native + Expo",
+        "FastAPI",
+        "PostgreSQL + Docker Compose",
+        "Gemini quiz service",
+        "Twelve Data market API",
+      ],
+      decision: {
+        title: "Keep AI credentials server-side and preserve the demo when market data fails",
+        rationale:
+          "FastAPI keeps the Gemini key out of the mobile client, while clearly labeled fallback stock data keeps the product demonstrable during external API failures.",
+      },
+      highlights: [
+        {
+          type: "feature",
+          title: "Market-data interaction",
+          text: "Connected range-based stock charts to Twelve Data responses and React state.",
+        },
+        {
+          type: "feature",
+          title: "Grounded quiz delivery",
+          text: "Used curated lesson content to guide Gemini-generated quiz questions returned as structured JSON.",
+        },
+        {
+          type: "improvement",
+          title: "Reproducible backend setup",
+          text: "Worked through Docker Compose networking to coordinate the FastAPI and PostgreSQL services.",
+        },
+      ],
+      outcome:
+        "Won 1st place at Fidelity FidHacks Westlake after delivering a working product with a five-person team in 24 hours.",
+    },
     updates: [
       {
         date: "7/10/2026",
