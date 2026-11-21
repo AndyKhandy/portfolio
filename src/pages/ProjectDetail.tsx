@@ -15,12 +15,12 @@ interface DetailProps {
 
 const updateStyles: Record<UpdateType, string> = {
   feature:
-    "border-emerald-900 bg-emerald-600 text-white dark:border-emerald-100 dark:bg-emerald-500",
-  fix: "border-red-900 bg-red-600 text-white dark:border-red-100 dark:bg-red-500",
+    "border-emerald-900 bg-emerald-800 text-white",
+  fix: "border-red-900 bg-red-700 text-white",
   improvement:
     "border-amber-900 bg-amber-400 text-amber-950 dark:border-amber-100 dark:bg-amber-300",
   refactor:
-    "border-violet-900 bg-violet-600 text-white dark:border-violet-100 dark:bg-violet-500",
+    "border-violet-900 bg-violet-700 text-white",
 };
 
 export default function ProjectDetail() {
@@ -37,8 +37,7 @@ export default function ProjectDetail() {
         <ArrowLeft size={16} /> All projects
       </Link>
       <article className="mt-10 max-w-3xl">
-        <p className="eyebrow">Case study</p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-6xl">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
           {project.title}
         </h1>
         {project.longDescription && (
@@ -97,8 +96,8 @@ function CaseStudyContent({ caseStudy }: { caseStudy: CaseStudy }) {
     <div className="case-study mt-16">
       <section className="case-study-intro">
         <div>
-          <p className="eyebrow">Context</p>
-          <p className="mt-3 leading-7 text-[var(--muted)]">{caseStudy.context}</p>
+          <h2 className="text-lg font-bold">Context</h2>
+          <p className="mt-2 leading-7 text-[var(--muted)]">{caseStudy.context}</p>
         </div>
         <div className="case-study-outcome">
           <CheckCircle2 aria-hidden="true" size={20} />

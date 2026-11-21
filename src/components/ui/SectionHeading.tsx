@@ -1,18 +1,15 @@
 interface SectionHeadingProps {
-  eyebrow?: string;
   title: string;
   children?: React.ReactNode;
 }
 
 export default function SectionHeading({
-  eyebrow,
   title,
   children,
 }: SectionHeadingProps) {
   return (
     <div className="max-w-2xl">
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className={`${eyebrow ? "mt-3" : ""} text-3xl font-bold tracking-tight sm:text-4xl`}>
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
         {title}
       </h2>
       {children && (

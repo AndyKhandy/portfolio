@@ -13,7 +13,6 @@ export default function Projects() {
       <OceanDecor variant="compass" className="section-compass section-compass-project" />
       <div className="page-shell">
         <SectionHeading
-          eyebrow="Projects"
           title="Things I’m building and exploring."
         />
         <div className="project-list mt-20">

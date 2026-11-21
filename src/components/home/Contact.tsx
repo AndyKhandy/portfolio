@@ -8,8 +8,7 @@ export default function Contact() {
       <div className="page-shell">
         <div className="contact-card">
           <div className="contact-copy">
-            <p className="eyebrow">Contact</p>
-            <h2 className="mt-3 text-4xl font-bold tracking-tight">
+            <h2 className="text-4xl font-bold tracking-tight">
               Let’s connect.
             </h2>
             <p className="mt-4 max-w-xl leading-7 text-[var(--muted)]">
@@ -23,14 +22,26 @@ export default function Contact() {
               <SocialLinks labels />
             </div>
             <div className="contact-gallery">
-              <img src="/me/cruise.jpeg" alt="Andy on a cruise" />
-              <img src="/me/cruise2.jpeg" alt="Andy on another cruise" />
+              <img
+                src="/me/cruise.jpeg"
+                alt="Andy on a cruise"
+                decoding="async"
+                loading="lazy"
+              />
+              <img
+                src="/me/cruise2.jpeg"
+                alt="Andy on another cruise"
+                decoding="async"
+                loading="lazy"
+              />
             </div>
           </div>
           <img
             className="contact-featured-photo"
             src="/me/beach.jpeg"
             alt="Andy at the beach"
+            decoding="async"
+            loading="lazy"
           />
         </div>
       </div>

@@ -2,7 +2,7 @@ import { Project } from "../../data/projects";
 
 interface ProjectMediaProps {
   project: Project;
-  offset: number,
+  offset: number;
 }
 
 export default function ProjectMedia({ project, offset }: ProjectMediaProps) {
@@ -24,8 +24,12 @@ export default function ProjectMedia({ project, offset }: ProjectMediaProps) {
         <img
           className={`project-shot project-shot-${(index + offset) % visibleScreenshots.length}`}
           src={screenshot}
-          alt={`${project.title} screenshot ${index + 1}`}
+          alt={`${project.title} project interface${
+            visibleScreenshots.length > 1 ? `, view ${index + 1}` : ""
+          }`}
+          decoding="async"
           key={screenshot}
+          loading="lazy"
         />
       ))}
     </div>

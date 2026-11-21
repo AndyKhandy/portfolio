@@ -9,10 +9,10 @@ export default function Skills() {
       <OceanDecor variant="wave" className="section-wave" />
       <OceanDecor variant="coordinates" className="section-coordinate coordinate-skills" />
       <div className="page-shell">
-        <SectionHeading eyebrow="Skills" title="A growing toolkit." />
-        <div className="mt-10 grid gap-15 sm:grid-cols-2 lg:grid-cols-3">
+        <SectionHeading title="A growing toolkit." />
+        <div className="skills-groups mt-10 grid gap-15 sm:grid-cols-2 lg:grid-cols-3">
           {Object.entries(skills).map(([group, items]) => (
-            <section className="card" key={group}>
+            <section className="skill-group" key={group}>
               <h3 className="font-bold">{group}</h3>
               <div className="skill-container mt-6 gap-2">
                 {items.map((item) => (

@@ -2,14 +2,18 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --surface: #f8fbff;
-  --surface-alt: #edf7ff;
-  --card: #ffffff;
-  --text: #0b1c33;
-  --muted: #52657b;
-  --line: #d7e4ef;
+  --surface: #f5fbff;
+  --surface-alt: #e7f5fb;
+  --card: #fbfdff;
+  --text: #07213a;
+  --muted: #456278;
+  --line: #b8d8e8;
   --accent: #0878bd;
   --accent-strong: #075f9b;
+  --current: #006f98;
+  --signal: #ad4c1c;
+  --control-line: var(--accent);
+  --focus: var(--current);
 }
 .dark {
   --surface: #030f21;
@@ -20,6 +24,9 @@
   --line: #1e5d98;
   --accent: #469ef7;
   --accent-strong: #98cdff;
+  --current: #77d8f7;
+  --signal: #ffb56b;
+  --focus: var(--current);
 }
 * {
   box-sizing: border-box;
@@ -41,8 +48,22 @@ button {
   font: inherit;
 }
 :where(a, button):focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.dark::selection,
+.dark ::selection {
+  color: var(--surface);
+}
+
+html {
+  scrollbar-color: var(--accent) var(--surface-alt);
 }
 .page-shell {
   width: min(1200px, calc(100% - 2rem));
@@ -54,6 +75,17 @@ button {
 }
 .section-tint {
   background: var(--surface-alt);
+}
+
+:root:not(.dark) #skills {
+  --surface-alt: #edf7ff;
+  --card: #ffffff;
+  --text: #0b1c33;
+  --muted: #52657b;
+  --line: #d7e4ef;
+  --current: #0878bd;
+  background: var(--surface-alt);
+  color: var(--text);
 }
 
 .ocean-section {
@@ -241,15 +273,19 @@ button {
 .button-primary:hover {
   background: var(--accent-strong);
 }
+.dark .button-primary,
+.dark .gallery-nav:hover {
+  color: var(--surface);
+}
 .button-secondary {
-  border: 1px solid var(--line);
+  border: 1px solid var(--control-line);
   background: var(--card);
   padding: 0.68rem 0.95rem;
 }
 .icon-button {
   height: 2.75rem;
   width: 2.75rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--control-line);
   background: var(--card);
   color: var(--text);
   cursor: pointer;
@@ -618,39 +654,54 @@ button {
   transform: translateY(2px);
 }
 
-.card {
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  background: var(--card);
-  padding: 1.5rem;
-  transition: 200ms ease-in;
-}
-#skills .card {
+.skill-group {
+  position: relative;
+  border-top: 1px solid color-mix(in srgb, var(--accent), transparent 48%);
+  padding: 1.5rem 1rem 1rem;
   text-align: center;
 }
 
-.card:hover {
-  border-color: var(--accent);
+.skill-group::before {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 2.5rem;
+  height: 3px;
+  content: "";
+  background: var(--current);
+  transform: translateX(-50%);
 }
 #experience {
   --experience-canvas: var(--surface-alt);
   --experience-panel: var(--card);
-  --experience-rail: color-mix(in srgb, var(--text), var(--accent) 36%);
-  --experience-rail-text: var(--card);
-  --experience-rail-muted: color-mix(in srgb, var(--card), var(--accent) 25%);
+  --experience-rail: color-mix(in srgb, var(--surface-alt), var(--accent) 12%);
+  --experience-rail-text: var(--text);
+  --experience-rail-muted: var(--muted);
   --experience-ink: var(--text);
   --experience-muted: var(--muted);
   --experience-line: var(--line);
-  --experience-emphasis: var(--accent);
-  --experience-emphasis-strong: var(--accent-strong);
-  --experience-active: color-mix(in srgb, var(--accent), transparent 82%);
+  --experience-emphasis: var(--current);
+  --experience-emphasis-strong: var(--current);
+  --experience-active: color-mix(in srgb, var(--current), transparent 82%);
   background: var(--experience-canvas);
   color: var(--experience-ink);
 }
+
+:root:not(.dark) #experience {
+  --experience-canvas: #edf7ff;
+  --experience-panel: #ffffff;
+  --experience-rail: color-mix(in srgb, #0b1c33, #0878bd 36%);
+  --experience-rail-text: #ffffff;
+  --experience-rail-muted: color-mix(in srgb, #ffffff, #0878bd 25%);
+  --experience-ink: #0b1c33;
+  --experience-muted: #52657b;
+  --experience-line: #d7e4ef;
+  --experience-emphasis: #0878bd;
+  --experience-emphasis-strong: #075f9b;
+  --experience-active: color-mix(in srgb, #0878bd, transparent 82%);
+}
 .dark #experience {
-  --experience-rail: color-mix(in srgb, var(--surface), var(--accent) 40%);
-  --experience-rail-text: var(--text);
-  --experience-rail-muted: color-mix(in srgb, var(--text), var(--accent) 28%);
+  --experience-rail: color-mix(in srgb, var(--surface-alt), var(--accent) 14%);
 }
 #experience .experience-route {
   color: var(--experience-emphasis);
@@ -827,15 +878,7 @@ button {
 
 .project-list {
   display: grid;
-  gap: clamp(5rem, 13vw, 14rem);
-}
-
-.project-row:first-of-type {
-  margin-top: 30px;
-}
-
-.project-row:last-of-type {
-  margin-bottom: 30px;
+  gap: clamp(4.5rem, 9vw, 10rem);
 }
 
 .project-row {
@@ -846,9 +889,6 @@ button {
 }
 .project-row-reversed {
   grid-template-columns: minmax(16rem, 0.85fr) minmax(0, 1.15fr);
-}
-.project-row-reversed .project-copy {
-  order: -1;
 }
 .project-visual {
   min-width: 0;
@@ -892,7 +932,9 @@ button {
   background: var(--card);
   box-shadow: 0 18px 36px color-mix(in srgb, #001e35, transparent 74%);
   object-fit: cover;
-  transition: 200ms ease-in;
+  transition:
+    transform 200ms ease-in,
+    box-shadow 200ms ease-in;
 }
 
 .project-media:not(.project-media-stacked):hover .project-shot {
@@ -947,7 +989,7 @@ button {
   align-items: center;
   min-height: 2.75rem;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--control-line);
   border-radius: 999px;
   background: color-mix(in srgb, var(--card), var(--surface-alt) 35%);
 }
@@ -969,7 +1011,7 @@ button {
   color: white;
 }
 .gallery-nav:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--focus);
   outline-offset: -2px;
 }
 .gallery-count {
@@ -993,6 +1035,12 @@ button {
   background: transparent;
   font-size: 1rem;
 }
+
+.dark #skills img[src*="/express/"],
+.dark #skills img[src*="/github/"] {
+  filter: brightness(0) invert(1);
+}
+
 .skill-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -1002,10 +1050,9 @@ button {
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
-  border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  background: linear-gradient(135deg, var(--card), var(--surface-alt));
-  padding: clamp(1.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(2rem, 5vw, 4rem) 0;
 }
 
 .contact-gallery {
@@ -1131,10 +1178,6 @@ button {
   border-radius: 0.85rem;
   background: var(--card);
   padding: 1.25rem;
-}
-
-.decision-card {
-  border-left: 4px solid var(--accent);
 }
 
 .decision-card h3,
@@ -1299,9 +1342,6 @@ button {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .project-row-reversed .project-copy {
-    order: initial;
-  }
   .project-media {
     overflow: hidden;
     border-radius: 1.1rem;
@@ -1340,11 +1380,15 @@ button {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+  html {
+    scroll-behavior: auto;
+  }
+
+  .button-primary:hover,
+  .button-secondary:hover,
+  .icon-button:hover,
+  .project-shot-0:hover,
+  .scroll-cue:hover {
+    transform: none;
   }
 }

@@ -170,6 +170,7 @@ export default function Hero() {
         CURIOSITY · LEARNING · BUILDING · DISCOVERY · CURIOSITY · LEARNING
       </motion.p>
       <motion.a
+        aria-label="Scroll to About"
         className="scroll-cue"
         href="#about"
         animate={{ opacity: 1, y: 0 }}
@@ -177,6 +178,7 @@ export default function Hero() {
         transition={{ delay: 1.72, duration: 0.24, ease: "easeOut" }}
       >
         <motion.span
+          aria-hidden="true"
           animate={reduceMotion ? {} : { y: [0, 6, 0] }}
           transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
         >

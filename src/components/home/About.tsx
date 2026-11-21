@@ -11,7 +11,6 @@ export default function About() {
       <div className="page-shell grid lg:grid-cols-[2fr_1fr] gap-10 sm:grid-cols-1 lg:items-end">
         <div className="left">
           <SectionHeading
-            eyebrow="About me"
             title="Software Engineer + Researcher"
           >
             I build software for real people and enjoy understanding the systems
@@ -44,7 +43,13 @@ export default function About() {
             <SocialLinks />
           </div>
         </div>
-        <img className="contact-featured-photo" src="/me/pro.jpeg" alt="" />
+        <img
+          className="contact-featured-photo"
+          src="/me/pro.jpeg"
+          alt="Andy Ta"
+          decoding="async"
+          loading="lazy"
+        />
       </div>
     </section>
   );
