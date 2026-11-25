@@ -15,16 +15,6 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    slug: "jpmorgan-chase",
-    organization: "JPMorganChase",
-    role: "Software Engineer Intern (Incoming)",
-    dates: "Summer 2027 (anticipated)",
-    description: "Incoming Software Engineer Intern at JPMorganChase.",
-    long_description:
-      "Received an offer after participating in Code for Good Columbus, JPMorganChase's Tech for Social Good hackathon. Preparing to join as a Software Engineer Intern in Summer 2027, with an interest in contributing to collaborative engineering work and growing through the firm's early-career software engineering community.",
-    logo: null,
-  },
-  {
     slug: "lockheed-martin-test-engineer-intern",
     organization: "Lockheed Martin Missiles & Fire Control",
     role: "Test Engineer Intern",
