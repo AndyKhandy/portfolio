@@ -40,6 +40,7 @@ export default function ExperienceTimeline() {
             {experiences.map((item, index) => (
               <button
                 aria-controls={`experience-panel-${item.slug}`}
+                aria-label={`Show ${item.organization} experience`}
                 aria-selected={index === selectedIndex}
                 className="experience-entry"
                 id={`experience-tab-${item.slug}`}

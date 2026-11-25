@@ -3,7 +3,7 @@ import { Code2, ExternalLink, ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Project } from "../../data/projects";
 import ProjectMedia from "./ProjectMedia";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ProjectProps {
   project: Project;
@@ -12,13 +12,26 @@ interface ProjectProps {
 
 export function ProjectRow({ project, index }: ProjectProps) {
   const reduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(
+    () => window.matchMedia("(max-width: 767px)").matches,
+  );
   const [projectNum, setProjectNum] = useState<number>(0);
   const imageCount = Math.min(
     project.screenshots.length || (project.image ? 1 : 0),
     3,
   );
   const isReversed = index % 2 !== 0;
-  const direction = isReversed ? -20 : 20;
+  const mediaFirst = !isReversed || isMobile;
+  const direction = !mediaFirst && isReversed ? -20 : 20;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateLayout = () => setIsMobile(mediaQuery.matches);
+
+    updateLayout();
+    mediaQuery.addEventListener("change", updateLayout);
+    return () => mediaQuery.removeEventListener("change", updateLayout);
+  }, []);
 
   const onClick = (value: number) => {
     if (projectNum + value >= imageCount) {
@@ -138,15 +151,15 @@ export function ProjectRow({ project, index }: ProjectProps) {
     <article
       className={`project-row ${isReversed ? "project-row-reversed" : ""}`}
     >
-      {isReversed ? (
+      {mediaFirst ? (
         <>
-          {projectCopy}
           {projectMedia}
+          {projectCopy}
         </>
       ) : (
         <>
-          {projectMedia}
           {projectCopy}
+          {projectMedia}
         </>
       )}
     </article>
