@@ -175,11 +175,11 @@ function HeroMapDecor({ className }: Pick<OceanDecorProps, "className">) {
 function HeroStarsDecor({ className }: Pick<OceanDecorProps, "className">) {
   const reduceMotion = useReducedMotion();
   const stars = [
-    { x: 232, y: 196, size: 34, delay: 0, label: "About", href: "#about" },
+    { x: 232, y: 196, size: 38, delay: 0, label: "About", href: "#about" },
     {
       x: 1133,
       y: 150,
-      size: 21,
+      size: 25,
       delay: 0.7,
       label: "Experience",
       href: "#experience",
@@ -187,16 +187,16 @@ function HeroStarsDecor({ className }: Pick<OceanDecorProps, "className">) {
     {
       x: 1270,
       y: 582,
-      size: 28,
+      size: 32,
       delay: 1.4,
       label: "Projects",
       href: "#projects",
     },
-    { x: 352, y: 616, size: 20, delay: 2.1, label: "Skills", href: "#skills" },
+    { x: 352, y: 616, size: 22, delay: 2.1, label: "Skills", href: "#skills" },
     {
       x: 1059,
       y: 664,
-      size: 19,
+      size: 21,
       delay: 2.8,
       label: "Contact",
       href: "#contact",
